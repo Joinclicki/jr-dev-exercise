@@ -1,3 +1,27 @@
+# Junior Developer Redux Exercise
+
+This project contains a partially implemented jokes app using Redux Toolkit and React.
+
+## Your Task
+
+Complete the Redux integration in `components/jokes-app.tsx` by following the TODO comments. You will need to:
+
+1. **Import Redux hooks and types:**
+   - Import `useSelector` and `useDispatch` from `react-redux`.
+   - Import `RootState` and `AppDispatch` from the store.
+   - Import actions (`fetchJoke`, `rateJoke`, `loadRatedJokes`, `clearRatedJokes`) from the jokes slice.
+2. **Connect the component to Redux:**
+   - Use `useSelector` to select the jokes state from the Redux store.
+   - Use `useDispatch` to get the dispatch function.
+3. **Dispatch actions:**
+   - Dispatch actions to fetch jokes, rate jokes, load rated jokes, and clear rated jokes as described in the TODOs.
+4. **Update the UI:**
+   - Use the Redux state to control loading, error, and joke display.
+
+The Redux store and slice are already set up for you in `lib/store.ts` and `lib/jokesSlice.ts`.
+
+---
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
