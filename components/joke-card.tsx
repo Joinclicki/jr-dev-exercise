@@ -1,42 +1,74 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { AlertTriangle, Shield } from "lucide-react"
-import StarRating from "./star-rating"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { AlertTriangle, Shield } from "lucide-react";
+import StarRating from "./star-rating";
+import { RatedJoke } from "@/lib/utils";
 
 interface JokeResponse {
-  error: boolean
-  category: string
-  type: string
-  setup?: string
-  delivery?: string
-  joke?: string
+  error: boolean;
+  category: string;
+  type: string;
+  setup?: string;
+  delivery?: string;
+  joke?: string;
   flags: {
-    nsfw: boolean
-    religious: boolean
-    political: boolean
-    racist: boolean
-    sexist: boolean
-    explicit: boolean
-  }
-  id: number
-  safe: boolean
-  lang: string
+    nsfw: boolean;
+    religious: boolean;
+    political: boolean;
+    racist: boolean;
+    sexist: boolean;
+    explicit: boolean;
+  };
+  id: number;
+  safe: boolean;
+  lang: string;
 }
 
 interface JokeCardProps {
-  joke: JokeResponse
-  onRate?: (rating: number) => void
-  currentRating?: number
+  joke: JokeResponse;
+  onRate?: (rating: number) => void;
+  currentRating?: number;
 }
 
-export default function JokeCard({ joke, onRate, currentRating }: JokeCardProps) {
-  const getActiveFlags = () => {
-    return Object.entries(joke.flags)
-      .filter(([_, value]) => value)
-      .map(([key, _]) => key)
-  }
+export default function JokeCard() {
+  // TODO: Get the dispatch function using useDispatch<AppDispatch>()
+  // const dispatch = ...
 
-  const activeFlags = getActiveFlags()
+  // TODO: Get the current rating from Redux state using useSelector
+  // const currentRating = ...
+
+  const handleRate = (rating: number) => {
+    // TODO: Dispatch rateJoke with the rating
+    // dispatch(rateJoke({ joke, rating }))
+  };
+
+  // TODO: Get the joke from Redux state using useSelector
+  // this is a placeholder for the joke
+  const joke: RatedJoke = {
+    rating: 0,
+    error: false,
+    category: "",
+    type: "",
+    id: 0,
+    flags: {
+      nsfw: false,
+      religious: false,
+      political: false,
+      racist: false,
+      sexist: false,
+      explicit: false,
+    },
+    safe: false,
+    lang: "",
+  };
+
+  const getActiveFlags = () => {
+    return Object.entries(joke?.flags || {})
+      .filter(([_, value]) => value)
+      .map(([key, _]) => key);
+  };
+
+  const activeFlags = getActiveFlags();
 
   return (
     <Card className="shadow-lg">
@@ -82,12 +114,14 @@ export default function JokeCard({ joke, onRate, currentRating }: JokeCardProps)
         {/* Star Rating */}
         <div className="flex items-center justify-between pt-4 border-t">
           <div>
-            <p className="text-sm font-medium text-gray-600 mb-2">Rate this joke:</p>
-            <StarRating rating={currentRating || 0} onRate={onRate} />
+            <p className="text-sm font-medium text-gray-600 mb-2">
+              Rate this joke:
+            </p>
+            <StarRating rating={joke.rating || 0} onRate={handleRate} />
           </div>
-          {currentRating && (
+          {joke.rating && (
             <Badge variant="secondary" className="text-xs">
-              You rated: {currentRating}/5
+              You rated: {joke.rating}/5
             </Badge>
           )}
         </div>
@@ -98,7 +132,11 @@ export default function JokeCard({ joke, onRate, currentRating }: JokeCardProps)
             <p className="text-sm font-medium text-gray-600">Content Flags:</p>
             <div className="flex flex-wrap gap-1">
               {activeFlags.map((flag) => (
-                <Badge key={flag} variant="outline" className="text-xs capitalize">
+                <Badge
+                  key={flag}
+                  variant="outline"
+                  className="text-xs capitalize"
+                >
                   {flag}
                 </Badge>
               ))}
@@ -113,5 +151,5 @@ export default function JokeCard({ joke, onRate, currentRating }: JokeCardProps)
         </div>
       </CardContent>
     </Card>
-  )
+  );
 }

@@ -1,14 +1,10 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { RootState, AppDispatch } from "@/lib/store";
-import {
-  fetchJoke,
-  rateJoke,
-  loadRatedJokes,
-  clearRatedJokes,
-} from "@/lib/jokesSlice";
+// TODO: Import necessary hooks and functions from Redux
+import { useState } from "react";
+import {} from "react-redux";
+import {} from "@/lib/store";
+import {} from "@/lib/jokesSlice";
 import { Button } from "@/components/ui/button";
 import {
   Select,
@@ -37,7 +33,8 @@ export default function JokesApp() {
     "jokes"
   );
 
-  const dispatch = useDispatch<AppDispatch>();
+  // TODO: Get the dispatch function using useDispatch<AppDispatch>()
+  // const dispatch = ...
 
   // TODO: Get jokes state from Redux using useSelector
   // const { currentJoke, loading, error, ratedJokes } = ...

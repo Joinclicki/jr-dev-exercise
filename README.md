@@ -4,19 +4,56 @@ This project contains a partially implemented jokes app using Redux Toolkit and 
 
 ## Your Task
 
-Complete the Redux integration in `components/jokes-app.tsx` by following the TODO comments. You will need to:
+Complete the Redux integration by following the TODO comments in the codebase. Here’s what you need to do, in order:
 
-1. **Import Redux hooks and types:**
-   - Import `useSelector` and `useDispatch` from `react-redux`.
-   - Import `RootState` and `AppDispatch` from the store.
-   - Import actions (`fetchJoke`, `rateJoke`, `loadRatedJokes`, `clearRatedJokes`) from the jokes slice.
-2. **Connect the component to Redux:**
-   - Use `useSelector` to select the jokes state from the Redux store.
-   - Use `useDispatch` to get the dispatch function.
-3. **Dispatch actions:**
-   - Dispatch actions to fetch jokes, rate jokes, load rated jokes, and clear rated jokes as described in the TODOs.
-4. **Update the UI:**
-   - Use the Redux state to control loading, error, and joke display.
+### 1. Connect Components to Redux
+
+#### In `components/jokes-app.tsx`:
+
+- [ ] **Import Redux hooks and types:**
+  - Import `useSelector` and `useDispatch` from [`react-redux`](https://react-redux.js.org/api/hooks).
+  - Import `RootState` and `AppDispatch` from the store (`lib/store.ts`).
+  - Import actions (`fetchJoke`, `rateJoke`, `loadRatedJokes`, `clearRatedJokes`) from the jokes slice (`lib/jokesSlice.ts`).
+- [ ] **Get Redux state and dispatch:**
+  - Use `useDispatch<AppDispatch>()` to get the dispatch function. ([Guide](https://redux-toolkit.js.org/tutorials/typescript#define-typed-hooks))
+  - Use `useSelector` to select `{ currentJoke, loading, error, ratedJokes }` from the jokes state. ([Guide](https://react-redux.js.org/api/hooks#useselector))
+- [ ] **Dispatch actions:**
+  - On mount, dispatch `loadRatedJokes` in a `useEffect`. ([Guide](https://react.dev/reference/react/useEffect))
+  - Implement `handleRateJoke` to dispatch `rateJoke` with the current joke and rating.
+  - Implement `handleFetchJoke` to dispatch `fetchJoke` with the selected category.
+- [ ] **Update the UI:**
+  - Show the number of rated jokes in the Leaderboard button.
+  - Show loading spinner and text when loading.
+  - Show error message if error exists.
+  - Show `JokeCard` if a joke is available and not loading or error.
+  - Show initial state if no joke, not loading, and no error.
+  - Pass `ratedJokes` and an `onClearAll` handler to the `Leaderboard` component.
+
+#### In `components/leaderboard.tsx`:
+
+- [ ] **Connect to Redux:**
+  - Use `useSelector` to get `ratedJokes` from the Redux state.
+  - Use `useDispatch<AppDispatch>()` to get the dispatch function.
+  - Implement `handleClearAll` to dispatch `clearRatedJokes`.
+
+### 2. Complete the Slice Extra Reducers
+
+#### In `lib/jokesSlice.ts`:
+
+- [ ] **Complete the extraReducers:**
+  - Fill in the TODOs to set `loading` and `error` state for `fetchJoke.pending`, `fetchJoke.fulfilled`, and `fetchJoke.rejected`.
+  - [Redux Toolkit createSlice docs](https://redux-toolkit.js.org/api/createSlice#the-extrareducers-builder-callback-notation)
+
+---
+
+### Helpful Resources
+
+- [Redux Toolkit Quick Start](https://redux-toolkit.js.org/tutorials/quick-start)
+- [React Redux Hooks API](https://react-redux.js.org/api/hooks)
+- [Redux Toolkit TypeScript Guide](https://redux-toolkit.js.org/tutorials/typescript)
+- [React useEffect](https://react.dev/reference/react/useEffect)
+- [TODO Highlight VS Code Extension](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight) — _Recommended for easily tracking TODOs in your code_
+- [Redux DevTools Chrome Extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd) — _Recommended for debugging and inspecting Redux state_
 
 The Redux store and slice are already set up for you in `lib/store.ts` and `lib/jokesSlice.ts`.
 
@@ -52,9 +89,3 @@ To learn more about Next.js, take a look at the following resources:
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
 You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
