@@ -130,7 +130,6 @@ export default function JokesApp() {
           {/* TODO: Show initial state if no currentJoke, not loading, and no error */}
         </>
       ) : (
-        // TODO: Pass ratedJokes from Redux state and implement onClearAll to dispatch clearRatedJokes
         <Leaderboard />
       )}
     </div>
