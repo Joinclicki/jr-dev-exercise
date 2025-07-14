@@ -34,9 +34,6 @@ export default function JokeCard() {
   // TODO: Get the dispatch function using useDispatch<AppDispatch>()
   // const dispatch = ...
 
-  // TODO: Get the current rating from Redux state using useSelector
-  // const currentRating = ...
-
   const handleRate = (rating: number) => {
     // TODO: Dispatch rateJoke with the rating
     // dispatch(rateJoke({ joke, rating }))

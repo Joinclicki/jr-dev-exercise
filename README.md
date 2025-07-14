@@ -6,42 +6,42 @@ This project contains a partially implemented jokes app using Redux Toolkit and 
 
 Complete the Redux integration by following the TODO comments in the codebase. Here’s what you need to do, in order:
 
-### 1. Connect Components to Redux
+### 1. Complete Redux Integration in Components
 
 #### In `components/jokes-app.tsx`:
 
-- [ ] **Import Redux hooks and types:**
-  - Import `useSelector` and `useDispatch` from [`react-redux`](https://react-redux.js.org/api/hooks).
-  - Import `RootState` and `AppDispatch` from the store (`lib/store.ts`).
-  - Import actions (`fetchJoke`, `rateJoke`, `loadRatedJokes`, `clearRatedJokes`) from the jokes slice (`lib/jokesSlice.ts`).
+- [ ] **Import Redux hooks and functions:**
+  - Import necessary hooks and functions from [`react-redux`](https://react-redux.js.org/api/hooks), the store, and the jokes slice.
 - [ ] **Get Redux state and dispatch:**
-  - Use `useDispatch<AppDispatch>()` to get the dispatch function. ([Guide](https://redux-toolkit.js.org/tutorials/typescript#define-typed-hooks))
-  - Use `useSelector` to select `{ currentJoke, loading, error, ratedJokes }` from the jokes state. ([Guide](https://react-redux.js.org/api/hooks#useselector))
-- [ ] **Dispatch actions:**
+  - Get the dispatch function using `useDispatch<AppDispatch>()`. ([Guide](https://redux-toolkit.js.org/tutorials/typescript#define-typed-hooks))
+  - Get jokes state from Redux using `useSelector`. ([Guide](https://react-redux.js.org/api/hooks#useselector))
+- [ ] **Initialize state on mount:**
   - On mount, dispatch `loadRatedJokes` in a `useEffect`. ([Guide](https://react.dev/reference/react/useEffect))
-  - Implement `handleRateJoke` to dispatch `rateJoke` with the current joke and rating.
-  - Implement `handleFetchJoke` to dispatch `fetchJoke` with the selected category.
+- [ ] **Implement action handlers:**
+  - Implement `handleRateJoke` to dispatch `rateJoke`.
+  - Implement `handleFetchJoke` to dispatch `fetchJoke`.
 - [ ] **Update the UI:**
-  - Show the number of rated jokes in the Leaderboard button.
-  - Show loading spinner and text when loading.
-  - Show error message if error exists.
-  - Show `JokeCard` if a joke is available and not loading or error.
-  - Show initial state if no joke, not loading, and no error.
-  - Pass `ratedJokes` and an `onClearAll` handler to the `Leaderboard` component.
+  - Show the number of rated jokes from Redux state in the Leaderboard button.
+  - Call `handleFetchJoke` on button click and disable when loading.
+  - Show loading spinner and text when loading. (e.g. `<Loader2 className="mr-2 h-4 w-4 animate-spin" />`)
+  - Show error message if error exists in Redux state.
+  - Show `JokeCard` if `currentJoke` exists and not loading or error.
+  - Show initial state if no `currentJoke`, not loading, and no error.
 
 #### In `components/leaderboard.tsx`:
 
 - [ ] **Connect to Redux:**
-  - Use `useSelector` to get `ratedJokes` from the Redux state.
-  - Use `useDispatch<AppDispatch>()` to get the dispatch function.
+  - Get `ratedJokes` from Redux state using `useSelector`.
   - Implement `handleClearAll` to dispatch `clearRatedJokes`.
 
 ### 2. Complete the Slice Extra Reducers
 
 #### In `lib/jokesSlice.ts`:
 
-- [ ] **Complete the extraReducers:**
-  - Fill in the TODOs to set `loading` and `error` state for `fetchJoke.pending`, `fetchJoke.fulfilled`, and `fetchJoke.rejected`.
+- [ ] **Handle async thunk states:**
+  - In `fetchJoke.pending`: Set loading to true and error to null.
+  - In `fetchJoke.fulfilled`: Set loading to false and set `currentJoke` to the action payload.
+  - In `fetchJoke.rejected`: Set loading to false and set error to the action payload or "Failed to fetch joke".
   - [Redux Toolkit createSlice docs](https://redux-toolkit.js.org/api/createSlice#the-extrareducers-builder-callback-notation)
 
 ---
