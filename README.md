@@ -3,8 +3,20 @@
 This project contains a partially implemented jokes app using Redux Toolkit and React.
 
 ## Your Task
+[`The Challenge`](https://www.loom.com/share/78b044e7706a4e8d99b506caf1df86e6)
 
-Complete the Redux integration by following the TODO comments in the codebase. Here’s what you need to do, in order:
+Complete the Redux integration by following the TODO comments in the codebase and *shoot a quick loom.com video
+show me that your app works, and explaining to me why it works*.  
+
+Get as far as you can, and feel free to ask me questions if required.
+
+## Instructional Videos
+
+1. [`Clicki Redux Strategy`](https://www.loom.com/share/03a03906702040d096d47c2bafc5c039)
+2. [`AsyncThunks & Reducers`](https://www.loom.com/share/0d443ad15fc7478880628da1758cb31c)
+3. [`Actions and Store Updates`](https://www.loom.com/share/efc73fe6565849d4aac980529165c6c2)
+
+Here’s what you need to do, in order:
 
 ### 1. Complete Redux Integration in Components
 
