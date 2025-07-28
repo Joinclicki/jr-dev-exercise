@@ -3,7 +3,7 @@
 This project contains a partially implemented jokes app using Redux Toolkit and React.
 
 ## Your Task
-[`The Challenge`](https://www.loom.com/share/78b044e7706a4e8d99b506caf1df86e6)
+[`The Challenge`](https://www.loom.com/share/78b044e7706a4e8d99b506caf1df86e6) <--- Video Link
 
 Complete the Redux integration by following the TODO comments in the codebase and *shoot a quick loom.com video
 show me that your app works, and explaining to me why it works*.  
